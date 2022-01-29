@@ -85,7 +85,7 @@ class Category(models.Model):
     slug        = models.SlugField(max_length=355, unique=True)
 
     def get_absolute_url(self):
-        return reverse("shop:categories_list", kwargs={"slug": self.slug})
+        return reverse("shop:categories_list", args=[self.slug])
 
     class Meta:
         verbose_name_plural = 'Categories'
