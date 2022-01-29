@@ -8,14 +8,14 @@ admin.site.register(A_size)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display        = ['name', 'description', 'slug', 'seller', 'brand', 'discount_price', 'price', 'display_image','in_stock']
-    editable_fields     = ['discount_price', 'price', 'in_stock', 'description']
+    list_display        = ['name', 'discount_price', 'price','category','seller', 'in_stock', 'slug','brand','display_image', 'created', 'updated']
+    list_editable       = ['discount_price', 'price', 'in_stock']
     prepopulated_fields = {'slug': ('name',)}
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display        = ['product', 'category', 'slug']
+    list_display        = ['category', 'slug']
     prepopulated_fields = {'slug': ('category',)}
 
 

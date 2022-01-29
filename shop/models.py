@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -7,6 +8,7 @@ class Product(models.Model):
     name            = models.CharField(max_length=100)
     description     = models.TextField(blank=True, null=True)
     seller          = models.ForeignKey(User, on_delete=models.CASCADE)
+    category        = models.ForeignKey("Category", on_delete=models.CASCADE, blank=True, null=True)
     brand           = models.CharField(max_length=100)
     discount_price  = models.DecimalField(max_digits=8, decimal_places=2)
     price           = models.DecimalField(max_digits=8, decimal_places=2)
@@ -79,12 +81,11 @@ category_choices = [(Grocery,'Grocery'),(Phones_Tablets,'Phones & Tablets'),(Hea
 ]
 
 class Category(models.Model):
-    product     = models.ForeignKey("Product", on_delete=models.CASCADE)
     category    = models.CharField(max_length=100, choices=category_choices)
     slug        = models.SlugField(max_length=355, unique=True)
 
     def get_absolute_url(self):
-        return reverse("shop:categories", kwargs={"slug": self.slug})
+        return reverse("shop:categories_list", kwargs={"slug": self.slug})
 
     class Meta:
         verbose_name_plural = 'Categories'
