@@ -19,7 +19,7 @@
                     <div class="col border-bottom">
                         <div class="row p-3">
                             <div class="col-6">Hardback</div>
-                            <div class="col-6 text-end"><span class="h4 fw-bold">£{{ product.price }}</span></div>
+                            <div class="col-6 text-end"><span class="h4 fw-bold">${{ product.price }}</span></div>
                         </div>
                     </div>
                     <div class="col">
@@ -42,11 +42,26 @@
             </div>
         </div>
     </main>
-    {% for image in product.other_image_set.all %}
-    <div class="col-md-5 col-lg-5 order-md-first bg-light">
-        <img class="img-fluid mx-auto d-block" width="200px" alt="Product image" src="{{ image.url }}">
-    </div>
-    {% endfor %}
 
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="pb-3 h5">Other Images</div>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+
+            {% for image in product.a_image_set.all %}
+
+            <div class="col">
+              <div class="card shadow-sm">
+                <img class="img-fluid" alt="Responsive image" width="500px" src="{{ image.image.url }}">
+
+              </div>
+            </div>
+
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
 </div>
 {% endblock %}
