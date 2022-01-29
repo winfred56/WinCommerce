@@ -11,8 +11,9 @@
                 <img class="img-fluid mx-auto d-block" width="500px" alt="Product image" src="{{ product.display_image.url }}">
             </div>
             <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
-                <h1 class="mb-0 h4">{{ product.title }}</h1>
-                <p><span class="lead">{{ product.seller }}</span></p>
+                <h1 class="mb-0 h4">{{ product.name }}</h1>
+                <p><span class="lead">{{ product.brand }}</span></p>
+                <p><span class="lead">{{ product.seller }}(seller)</span></p>
                 <p>{{ product.description|slice:":655" }}...</p>
                 <div class="border">
                     <div class="col border-bottom">
@@ -41,7 +42,11 @@
             </div>
         </div>
     </main>
-    {% for other_image in product.other_image_set.all %}{% endfor %}
+    {% for image in product.other_image_set.all %}
+    <div class="col-md-5 col-lg-5 order-md-first bg-light">
+        <img class="img-fluid mx-auto d-block" width="200px" alt="Product image" src="{{ image.url }}">
+    </div>
+    {% endfor %}
 
 </div>
 {% endblock %}
