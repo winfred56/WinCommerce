@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import Cart, CartItem
 
-# Create your views here.
+
+def add_to_cart(request,slug):
+    
