@@ -1,6 +1,8 @@
+import imp
 from django.shortcuts import render, get_object_or_404, redirect
 from shop.models import Product
 from .models import Cart, CartItem
+from django.utils import timezone
 
 
 def add_to_cart(request,slug):
@@ -19,7 +21,7 @@ def add_to_cart(request,slug):
         else:
             cart.products.add(cart_item)
     else:
-        #ordered_date = timezone.now()
-        cart = Cart.objects.create(user=request.user)
+        ordered_date = timezone.now()
+        cart = Cart.objects.create(user=request.user, ordered_date=ordered_date)
         cart.products.add(cart_item)
-    return redirect("home")
+    return redirect("/")
