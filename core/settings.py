@@ -9,14 +9,14 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-import django
-
-django.setup()
 
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-import accounts.models
+import django
+
+django.setup()
+from accounts.models import UserBase
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,10 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
-    'shop',
-    'accounts',
-    'basket',
+    'shop.apps.ShopConfig',
+    'accounts.apps.AccountsConfig',
+    'basket.apps.BasketConfig',
 ]
 
 MIDDLEWARE = [
@@ -130,4 +131,4 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_URL = 'home'
-AUTH_USER_MODEL = accounts.models.UserBase
+AUTH_USER_MODEL = UserBase
