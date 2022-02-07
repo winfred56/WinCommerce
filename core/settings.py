@@ -11,12 +11,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-
+from accounts.models import UserBase
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 import django
 
-django.setup()
-from accounts.models import UserBase
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
