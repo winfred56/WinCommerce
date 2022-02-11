@@ -50,6 +50,5 @@ class UserBase(AbstractBaseUser, PermissionsMixin):
         verbose_name = 'Accounts'
         verbose_name_plural = 'Accounts'
 
-
     def __str__(self):
         return self.user_name
